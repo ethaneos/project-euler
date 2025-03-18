@@ -27,9 +27,25 @@ def increaseNum():
 
 while found == False:
     varChecking = ""
+    posOfStar = []
     primeVar = []
     if "*" not in numChecking:
+        increaseNum()
         continue
     else:
-        for k in numChecking:
-            varChecking = varChecking + k
+        for l in range(0,10):
+            for k in range(numChecking):
+                if numChecking[k] == "*":
+                    posOfStar.append(str(l))
+                else:
+                    varChecking = varChecking + numChecking[k]
+            if checkPrime(int(varChecking)) == True:
+                primeVar.append(varChecking)
+    if len(primeVar) == 8:
+        print(primeVar)
+        break
+    else:
+        increaseNum()
+
+                
+            
