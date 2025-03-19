@@ -16,7 +16,7 @@ def increaseDigit(index):
         numChecking[i] = digits[ph1]
     
 def increaseNum():
-    for j in range(len(numChecking),0,-1):
+    for j in range(len(numChecking)-1,-1,-1):
         increaseDigit([j])
         if numChecking[j] != "*":
             break
@@ -26,21 +26,26 @@ def increaseNum():
 
 
 while found == False:
-    varChecking = ""
-    posOfStar = []
     primeVar = []
     if "*" not in numChecking:
         increaseNum()
         continue
     else:
         for l in range(0,10):
-            for k in range(numChecking):
+            varChecking = ""
+            for k in range(len(numChecking)):
                 if numChecking[k] == "*":
-                    posOfStar.append(str(l))
+                    if k == 0 and l == 0:
+                        break
+                    varChecking = varChecking + str(l)
                 else:
                     varChecking = varChecking + numChecking[k]
-            if checkPrime(int(varChecking)) == True:
-                primeVar.append(varChecking)
+            try:
+                if checkPrime(int(varChecking)) == True:
+                    primeVar.append(varChecking)
+            except:
+                continue
+    print(primeVar)
     if len(primeVar) == 8:
         print(primeVar)
         break
